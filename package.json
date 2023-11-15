@@ -4,16 +4,27 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "tsup --watch"
+    "dev": "tsup --watch",
+      "debug": "tsup --watch --onSuccess \"NODE_ENV=dev node --inspect --enable-source-maps -r tsconfig-paths/register dist/index.js\"",
+    "brk": "tsup --watch --onSuccess \"NODE_ENV=dev node --inspect-brk --enable-source-maps -r tsconfig-paths/register dist/index.js\"",
+    "introspect": "drizzle-kit introspect:pg",
+    "generate": "drizzle-kit generate:pg"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.29.0",
+    "fastify": "^4.24.3",
+    "pg": "^8.11.3",
     "tsconfig-paths": "^4.2.0",
     "tsup": "^7.2.0",
+    "tsx": "^4.1.2",
     "typescript": "^5.2.2"
   },
   "devDependencies": {
+    "@types/pg": "^8.10.9",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
+    "drizzle-kit": "^0.20.2",
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
