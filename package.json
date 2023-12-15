@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsup --watch",
-      "debug": "tsup --watch --onSuccess \"NODE_ENV=dev node --inspect --enable-source-maps -r tsconfig-paths/register dist/index.js\"",
+    "debug": "tsup --watch --onSuccess \"NODE_ENV=dev node --inspect --enable-source-maps -r tsconfig-paths/register dist/index.js\"",
     "brk": "tsup --watch --onSuccess \"NODE_ENV=dev node --inspect-brk --enable-source-maps -r tsconfig-paths/register dist/index.js\"",
     "introspect": "drizzle-kit introspect:pg",
     "generate": "drizzle-kit generate:pg"
@@ -14,11 +14,13 @@
     "dotenv": "^16.3.1",
     "drizzle-orm": "^0.29.0",
     "fastify": "^4.24.3",
+    "fastify-type-provider-zod": "^1.1.9",
     "pg": "^8.11.3",
     "tsconfig-paths": "^4.2.0",
     "tsup": "^7.2.0",
     "tsx": "^4.1.2",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/pg": "^8.10.9",
