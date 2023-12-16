@@ -8,13 +8,17 @@
     "debug": "tsup --watch --onSuccess \"NODE_ENV=dev node --inspect --enable-source-maps -r tsconfig-paths/register dist/index.js\"",
     "brk": "tsup --watch --onSuccess \"NODE_ENV=dev node --inspect-brk --enable-source-maps -r tsconfig-paths/register dist/index.js\"",
     "introspect": "drizzle-kit introspect:pg",
-    "generate": "drizzle-kit generate:pg"
+    "generate": "drizzle-kit generate:pg",
+    "migrate": "tsx src/migrate.ts"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.3.1",
     "drizzle-orm": "^0.29.0",
     "fastify": "^4.24.3",
     "fastify-type-provider-zod": "^1.1.9",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.7",
     "pg": "^8.11.3",
     "tsconfig-paths": "^4.2.0",
     "tsup": "^7.2.0",
@@ -23,6 +27,9 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/nodemailer": "^6.4.14",
     "@types/pg": "^8.10.9",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
@@ -31,5 +38,6 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "prettier": "^3.1.0"
-  }
+  },
+  "packageManager": "yarn@3.5.0"
 }

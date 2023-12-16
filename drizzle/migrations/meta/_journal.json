@@ -8,6 +8,27 @@
       "when": 1700091029234,
       "tag": "0000_big_eddie_brock",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1702760244030,
+      "tag": "0001_closed_fallen_one",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1702760252561,
+      "tag": "0002_petite_bucky",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1702764152144,
+      "tag": "0003_melted_star_brand",
+      "breakpoints": true
     }
   ]
 }

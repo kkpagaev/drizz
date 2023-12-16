@@ -1,15 +1,17 @@
+import "./glob"
 import * as dotenv from "dotenv"
 import { InferSelectModel } from "drizzle-orm"
 import { users } from "./schema"
-import Fastify, { HTTPMethods } from "fastify"
+import Fastify from "fastify"
 import { ZodTypeProvider } from "fastify-type-provider-zod"
-import { client, db } from "./db"
-import { ZodSchema, z } from "zod"
+import { client } from "./db"
+import { ZodSchema } from "zod"
+import api from "./api"
 dotenv.config()
 
 export type User = InferSelectModel<typeof users>
 
-function build() {
+async function build() {
   const f = Fastify({
     logger: true
   })
@@ -39,63 +41,24 @@ function build() {
       })
     }
   })
-
-  f.get("/users", async () => {
-    const usrs = await db.select().from(users)
-
-    return usrs
+  f.setErrorHandler<Error>(async (error, request, reply) => {
+    f.log.error(error)
+    return reply.status(400).send({
+      status: 400,
+      message: error.message
+    })
   })
 
   return f.withTypeProvider<ZodTypeProvider>()
 }
-type FastifyApp = ReturnType<typeof build>
 
-type Role = "admin" | "user"
-
-type RouteParamAdditional = {
-  auth?: "try" | "admin" | "user"
-  role?: Role
-}
-
-type RouteParam = Parameters<FastifyApp["route"]>[0]
-
-type CreateRouteParam = Omit<RouteParam, "url" | "method"> &
-  RouteParamAdditional
-
-function createRoute(route: CreateRouteParam) {
-  const r = route as RouteParam
-  return (fastify: FastifyApp, url: string, method: HTTPMethods) => {
-    r.url = url
-    r.method = method
-    fastify.route(r)
-  }
-}
-
-createRoute({
-  schema: {
-    body: z.object({
-      username: z.string().max(32).describe("Some description for username"),
-      password: z.string().max(32)
-    })
-  },
-  handler: async (req, res) => {}
-})
+export type FastifyApp = Awaited<ReturnType<typeof build>>
 
 async function main() {
   await client.connect()
-  const f = build()
-  const LOGIN_SCHEMA = z.object({
-    username: z.string().max(32).describe("Some description for username"),
-    password: z.string().max(32)
-  })
-  f.route({
-    method: "POST",
-    url: "/login",
-    schema: { body: LOGIN_SCHEMA },
-    handler: async (req, res) => {
-      await res.send("ok")
-    }
-  })
+  const f = await build()
+
+  await f.register(api)
 
   f.listen({ port: 3000 }, (err, address) => {
     if (err) {
