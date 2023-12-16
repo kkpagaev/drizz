@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
+    "rootDir": "../",
+    "baseUrl": ".."
+  },
+  "include": ["./**/*", "../src/**/*"]
+}

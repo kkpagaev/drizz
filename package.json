@@ -9,7 +9,9 @@
     "brk": "tsup --watch --onSuccess \"NODE_ENV=dev node --inspect-brk --enable-source-maps -r tsconfig-paths/register dist/index.js\"",
     "introspect": "drizzle-kit introspect:pg",
     "generate": "drizzle-kit generate:pg",
-    "migrate": "tsx src/migrate.ts"
+    "migrate": "tsx src/migrate.ts",
+    "test": "NODE_ENV=test vitest",
+    "test:debug": "NODE_ENV=test node --inspect -r tsconfig-paths/register ../node_modules/.bin/vitest --no-isolate"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -24,6 +26,7 @@
     "tsup": "^7.2.0",
     "tsx": "^4.1.2",
     "typescript": "^5.2.2",
+    "vitest": "^1.0.4",
     "zod": "^3.22.4"
   },
   "devDependencies": {
