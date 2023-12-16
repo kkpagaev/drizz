@@ -2,7 +2,7 @@ import { z } from "zod"
 import { FastifyApp } from ".."
 import { authService } from "../services"
 
-const userSignupSchema = z.object({
+export const userSignupSchema = z.object({
   username: z.string(),
   password: z.string(),
   email: z.string(),
@@ -10,7 +10,7 @@ const userSignupSchema = z.object({
   phone: z.string()
 })
 
-const userSigninSchema = z.object({
+export const userSigninSchema = z.object({
   username: z.string(),
   password: z.string()
 })

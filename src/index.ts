@@ -2,7 +2,6 @@ import "./glob"
 import * as dotenv from "dotenv"
 import { InferSelectModel } from "drizzle-orm"
 import { users } from "./schema"
-import { client } from "./db"
 import { buildFastify } from "./fastify"
 dotenv.config()
 
@@ -11,7 +10,6 @@ export type User = InferSelectModel<typeof users>
 export type FastifyApp = Awaited<ReturnType<typeof buildFastify>>
 
 async function main() {
-  await client.connect()
   const f = await buildFastify()
 
   f.listen({ port: 3000 }, (err, address) => {

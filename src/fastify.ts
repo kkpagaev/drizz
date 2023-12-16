@@ -2,8 +2,11 @@ import { ZodTypeProvider } from "fastify-type-provider-zod"
 import Fastify from "fastify"
 import { ZodSchema } from "zod"
 import api from "./api"
+import { client } from "./db"
 
 export async function buildFastify() {
+  await client.connect()
+
   const f = Fastify({
     logger: true
   })
