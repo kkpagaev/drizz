@@ -18,7 +18,7 @@ const userSigninSchema = z.object({
 export default async (f: FastifyApp) => {
   f.route({
     method: "POST",
-    url: "/auth/signup",
+    url: "/signup",
     schema: {
       body: userSignupSchema
     },
@@ -31,7 +31,7 @@ export default async (f: FastifyApp) => {
 
   f.route({
     method: "POST",
-    url: "/auth/signin",
+    url: "/signin",
     schema: {
       body: userSigninSchema
     },
