@@ -41,7 +41,9 @@ export async function buildFastify() {
     })
   })
 
-  await f.register(api)
+  await f.register(api, {
+    prefix: "/api"
+  })
 
   return f.withTypeProvider<ZodTypeProvider>()
 }
