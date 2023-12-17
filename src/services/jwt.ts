@@ -1,7 +1,7 @@
 import * as jwt from "jsonwebtoken"
 
 export interface JwtPayload extends jwt.JwtPayload {
-  username: string
+  userId: number
 }
 export function generateToken(payload: JwtPayload): string {
   return jwt.sign(payload, "secret")

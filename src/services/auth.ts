@@ -30,7 +30,9 @@ export async function signin(dto: SigninDto) {
     throw new Error("Wrong password")
   }
 
-  const token = jwtService.generateToken({ username: user.username! })
+  const token = jwtService.generateToken({
+    userId: user.id
+  })
 
   return token
 }

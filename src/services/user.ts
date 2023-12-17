@@ -34,3 +34,11 @@ export async function getByUsername(username: string) {
 
   return user
 }
+
+export async function getById(id: number) {
+  const user = await db.query.users.findFirst({
+    where: eq(schema.users.id, id)
+  })
+
+  return user
+}
